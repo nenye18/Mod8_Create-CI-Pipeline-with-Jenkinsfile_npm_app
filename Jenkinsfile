@@ -9,12 +9,14 @@ pipeline {
                 script{
                     dir("app") {
                         sh "npm version patch"  //update the package.json version
-                        def matcher = readJSON file: 'package.json'
-                        def version = matcher.version
-                        env.IMAGE_NAME ="$version-$BUILD_NUMBER" 
+                        //def matcher = readJSON file: 'package.json'
+                        //def version = matcher.version
+                        //env.IMAGE_NAME ="$version-$BUILD_NUMBER" 
                         // def version = matcher[0][1]
                        // env.IMAGE_NAME ="$version-$BUILD_NUMBER
                         //def matcher =readJSON(file: 'package.json').version
+                         def Version=readJSON(file: 'package.json').version
+                        env.IMAGE_NAME ="$Version-$BUILD_NUMBER" 
                                       
                     }
                 }
