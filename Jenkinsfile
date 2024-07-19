@@ -3,6 +3,7 @@ pipeline {
     tools {
         nodejs 'nodeJS-byme'
     }
+    stages {    
         stage('test') {
             steps {
                 script{
@@ -24,3 +25,4 @@ pipeline {
             }
         }
     }
+}
