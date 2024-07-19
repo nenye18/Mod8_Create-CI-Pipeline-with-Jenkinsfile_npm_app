@@ -41,7 +41,7 @@ pipeline {
         }
         stage('commit new version to github') {
             steps {
-            script{
+              script{
                     echo 'commit new version to git'
                     withCredentials([usernamePassword(credentialsId: 'GitHub credentials',passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh 'git config --global user.email "chinenye.nw@gmail.com" '
@@ -52,10 +52,12 @@ pipeline {
                         sh 'git push origin HEAD:main'
                     }
             }
-        }     
+          } 
+        }
         stage('deploy') {
             steps {
                 echo 'Hello, deploying application'
             }
         }        
+      }
 }
