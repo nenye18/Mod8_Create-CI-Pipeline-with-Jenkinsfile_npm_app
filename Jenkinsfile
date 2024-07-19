@@ -3,10 +3,14 @@ pipeline {
     tools {
         nodejs 'nodeJS-byme'
     }
-    stages {
-        stage('build') {
+        stage('test') {
             steps {
-               echo 'building the application..'
+                script{
+                    dir("app") {
+                        sh "npm install"
+                        sh "npm run test"
+                    }
+                }
             }
         }
         stage('build image') {
