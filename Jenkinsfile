@@ -9,12 +9,6 @@ pipeline {
                 script{
                     dir("app") {
                         sh "npm version patch"  //update the package.json version
-                        //def matcher = readJSON file: 'package.json'
-                        //def version = matcher.version
-                        //env.IMAGE_NAME ="$version-$BUILD_NUMBER" 
-                        // def version = matcher[0][1]
-                       // env.IMAGE_NAME ="$version-$BUILD_NUMBER
-                        //def matcher =readJSON(file: 'package.json').version
                          def Version=readJSON(file: 'package.json').version
                         env.IMAGE_NAME ="$Version-$BUILD_NUMBER" 
                                       
@@ -32,7 +26,7 @@ pipeline {
                 }
             }
         }
-    stage('build docker image and push to repo') {
+      stage('build docker image and push to repo') {
             steps {
                 script{
                     echo 'building the docker image..'
@@ -45,10 +39,23 @@ pipeline {
                 }        
             }
         }
+        stage('commit new version to github') {
+            steps {
+            script{
+                    echo 'commit new version to git'
+                    withCredentials([usernamePassword(credentialsId: 'GitHub credentials',passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                        sh 'git config --global user.email "chinenye.nw@gmail.com" '
+                        sh 'git config --global user.name "jenkins" '
+                        sh 'git remote set-url origin git@github.com:nenye18/Jenkins-project.git
+                        sh 'git add .'
+                        sh 'git commit -m "commiting version update from jenkins CI/CD" '
+                        sh 'git push origin HEAD:main'
+                    }
+            }
+        }     
         stage('deploy') {
             steps {
                 echo 'Hello, deploying application'
             }
-        }
-    }
+        }        
 }
