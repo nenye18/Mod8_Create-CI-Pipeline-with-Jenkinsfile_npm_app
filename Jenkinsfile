@@ -46,7 +46,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'GitHub credentials',passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh 'git config --global user.email "chinenye.nw@gmail.com" '
                         sh 'git config --global user.name "jenkins" '
-                        sh 'git remote set-url origin git@github.com:nenye18/Jenkins-project.git'
+                        sh 'git remote set-url origin https://github.com/nenye18/Jenkins-project.git'
                         sh 'git add .'
                         sh 'git commit -m "commiting version update from jenkins CI/CD" '
                         sh 'git push origin HEAD:main'
