@@ -5,7 +5,7 @@ WORKDIR /home/app
 
 COPY app/* /home/app
 
-EXPOSE 8080
+EXPOSE 3000
 
 RUN npm install
 
