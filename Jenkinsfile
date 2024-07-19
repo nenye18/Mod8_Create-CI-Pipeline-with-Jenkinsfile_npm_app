@@ -3,7 +3,21 @@ pipeline {
     tools {
         nodejs 'nodeJS-byme'
     }
-    stages {    
+    stages {   
+        stage('increment app version') {
+            steps {
+                script{
+                    dir("app") {
+                        sh "npm version patch"  //update the package.json version
+                        //def matcher = readFile('package.json')=~ '<version>(.+)</version>'
+                        // def version = matcher[0][1]
+                       // env.IMAGE_NAME ="$version-$BUILD_NUMBER
+                        def matcher =readJSON(file: 'package.json').version
+                        env.IMAGE_NAME ="$matcher-$BUILD_NUMBER"               
+                    }
+                }
+            }
+        }
         stage('test') {
             steps {
                 script{
@@ -14,14 +28,14 @@ pipeline {
                 }
             }
         }
-    stage('build image') {
+    stage('build docker image and push to repo') {
             steps {
                 script{
                     echo 'building the docker image..'
                     withCredentials([usernamePassword(credentialsId: 'docker hub repository',passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                        sh 'docker build -t cnwagba/jenkins-repo-dockerhub:node-1.0 .'  //Build Docker Image
+                        sh 'docker build -t cnwagba/jenkins-repo-dockerhub:$IMAGE_NAME .'  //Build Docker Image
                         sh 'echo $PASS | docker login -u $USER --password-stdin'       // Authentication
-                        sh 'docker push cnwagba/jenkins-repo-dockerhub:node-1.0'       //Push to Docker repository
+                        sh 'docker push cnwagba/jenkins-repo-dockerhub:$IMAGE_NAME'       //Push to Docker repository
                     }
                         
                 }        
