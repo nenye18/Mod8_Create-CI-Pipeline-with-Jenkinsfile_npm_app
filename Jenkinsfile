@@ -9,7 +9,7 @@ pipeline {
                 script{
                     dir("app") {
                         sh "npm version patch"  //update the package.json version
-                         def Version=readJSON(file: 'package.json').version
+                         def Version = readJSON(file: 'package.json').version
                         env.IMAGE_NAME ="$Version-$BUILD_NUMBER" 
                                       
                     }
@@ -45,7 +45,7 @@ pipeline {
                     echo 'commit new version to git'
                     withCredentials([usernamePassword(credentialsId: 'GitHub credentials',passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh 'git config --global user.email "chinenye.nw@gmail.com" '
-                        sh 'git config --global user.name "cnwagba" '
+                        sh 'git config --global user.name "nenye18" '
                         sh 'git remote set-url origin https://$USER:$PASS@https://github.com/nenye18/Jenkins-project.git'
                         sh 'git add .'
                         sh 'git commit -m "commiting version update from jenkins CI/CD" '
