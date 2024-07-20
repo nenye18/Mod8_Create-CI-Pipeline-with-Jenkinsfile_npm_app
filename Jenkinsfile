@@ -49,7 +49,7 @@ pipeline {
                         sh 'git remote set-url origin https://$USER:$PASS@https://github.com/nenye18/Jenkins-project.git'
                         sh 'git add .'
                         sh 'git commit -m "commiting version update from jenkins CI/CD" '
-                        sh 'git push origin HEAD:main'
+                        sh 'git push origin HEAD:master'
                     }
             }
           } 
