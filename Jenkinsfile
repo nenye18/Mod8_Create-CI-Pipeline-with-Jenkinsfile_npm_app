@@ -1,3 +1,7 @@
+#!/user/bin/env groovy
+
+@library ('Jenkins-shared-library-nodejs')_
+
 pipeline {
     agent any
     tools {
@@ -19,10 +23,11 @@ pipeline {
         stage('test') {
             steps {
                 script{
-                    dir("app") {
-                        sh "npm install"
-                        sh "npm run test"
-                    }
+                    TestApp()
+                    //dir("app") {
+                     //   sh "npm install"
+                     //   sh "npm run test"
+                    //}
                 }
             }
         }
