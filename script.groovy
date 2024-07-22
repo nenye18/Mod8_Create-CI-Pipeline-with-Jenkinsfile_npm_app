@@ -5,7 +5,7 @@ def VersionUpdate() {
         def Version = readJSON(file: 'package.json').version
         env.IMAGE_NAME ="$Version-$BUILD_NUMBER"                                    
     }
-  }
+}
 
 
 def TestApp() {
