@@ -1,3 +1,7 @@
+#!/user/bin/env groovy
+
+@Library('Jenkins-shared-library-nodejs')
+
 def gv
 
 pipeline {
@@ -16,28 +20,28 @@ pipeline {
         stage('increment app version') {
             steps {
                 script{
-                    gv.VersionUpdate()
+                    VersionUpdate()
                 }
             }
         }
         stage('test') {
             steps {
                 script{
-                  gv.TestApp()
+                  TestApp()
                 }
             }
         }
         stage('build docker image and push to repo') {
             steps {
                 script{
-                    gv.BuildImage() 
+                    BuildImage() 
                 }        
             }
         }
         stage('commit new version to github') {
             steps {
               script{
-                  gv.CommitToGit()
+                  CommitToGit()
               }
            } 
        }
