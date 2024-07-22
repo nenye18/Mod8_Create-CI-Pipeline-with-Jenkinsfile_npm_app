@@ -17,7 +17,7 @@ def TestApp() {
 }
 
 def BuildImage(){
-    echo 'building the docker image...
+    echo 'building the docker image...'
     //withCredentials([usernamePassword(credentialsId: 'docker hub repository',passwordVariable: 'PASS', usernameVariable: 'USER')]){
     //sh 'docker build -t cnwagba/jenkins-repo-dockerhub:$IMAGE_NAME .' 
     //sh 'echo $PASS | docker login -u $USER --password-stdin'       
