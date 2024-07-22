@@ -16,7 +16,10 @@ def TestApp() {
     }
 }
 
-
+def buildImage(){
+    echo 'doing nothing'
+}
+        
 
 def CommitToGit() {
   echo 'committing to git'
