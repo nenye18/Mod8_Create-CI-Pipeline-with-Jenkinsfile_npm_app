@@ -16,7 +16,7 @@ def TestApp() {
     }
 }
 
-def buildImage(){
+def BuildImage(){
     echo 'doing nothing'
 }
         
