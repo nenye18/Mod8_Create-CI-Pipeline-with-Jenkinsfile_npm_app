@@ -10,6 +10,10 @@ def VersionUpdate() {
 
 def TestApp() {
     echo 'building the image'
+    dir("app") {
+    sh "npm install"
+    sh "npm run test"                
+    }
 }
 
 def buildImage() {
