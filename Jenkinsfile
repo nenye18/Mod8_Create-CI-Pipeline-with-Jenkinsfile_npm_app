@@ -8,7 +8,7 @@ pipeline {
         nodejs 'nodeJS-byme'
     }
     stages { 
-        stage('init'){
+        stage('init') {
             steps {
                 script{
                     gv = load "script.groovy"
