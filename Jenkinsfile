@@ -7,7 +7,14 @@ pipeline {
     tools {
         nodejs 'nodeJS-byme'
     }
-    stages {   
+    stages { 
+        stage('init'){
+            steps {
+                script{
+                    gv = load "script.groovy"
+                }
+            }
+        }
         stage('increment app version') {
             steps {
                 script{
