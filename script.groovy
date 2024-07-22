@@ -1,7 +1,7 @@
 def VersionUpdate() {
     echo 'updating the version'
     dir("app") {
-        sh "npm version patch"  //update the package.json version
+        sh "npm version patch"  
         def Version = readJSON(file: 'package.json').version
         env.IMAGE_NAME ="$Version-$BUILD_NUMBER"                                    
     }
