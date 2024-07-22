@@ -29,24 +29,24 @@ pipeline {
                 }
             }
         }
-       stage('build docker image and push to repo') {
+        stage('build docker image and push to repo') {
             steps {
                 script{
                     gv.BuildImage() 
                 }        
             }
         }
-       stage('commit new version to github') {
+        stage('commit new version to github') {
             steps {
               script{
                   gv.CommitToGit()
               }
            } 
-      }
-      stage('deploy') {
+       }
+       stage('deploy') {
             steps {
                 echo 'Hello, deploying application'
             }
-        }        
+       }        
    }
 }
