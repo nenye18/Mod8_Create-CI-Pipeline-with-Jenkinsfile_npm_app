@@ -47,12 +47,14 @@ pipeline {
        }
        stage('deploy') {
             steps {
-                echo 'Hello, deploying application'
-                def dockerCmd = 'docker run -p 3050:3000 -d cnwagba/jenkins-repo-dockerhub:1.0.4-2'
-                sshagent(['d_ec2']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@44.193.200.99 ${dockerCmd}"
+                script{
+                    echo 'Hello, deploying application....'
+                    def dockerCmd = 'docker run -p 3050:3000 -d cnwagba/jenkins-repo-dockerhub:1.0.4-2'
+                    sshagent(['d_ec2']) {
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@44.193.200.99 ${dockerCmd}"
+                }
             }
        }        
+     }
    }
-  }
  }
