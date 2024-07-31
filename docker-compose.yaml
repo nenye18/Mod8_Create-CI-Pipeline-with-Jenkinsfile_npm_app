@@ -1,6 +1,6 @@
-version: '3'
+version: '3.8'
 services:
   node-app:
-    image: ${IMAGE}
+    image: ${IMAGE_NAME}
     ports:
       - "3050:3000"
