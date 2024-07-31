@@ -55,7 +55,7 @@ pipeline {
                     
                     //def dockerCmd = 'docker run -p 3050:3000 -d cnwagba/jenkins-repo-dockerhub:1.0.4-2'
                     sshagent(['d_ec2']) {
-                        sh "scp -o StrictHostKeyChecking=no server-cmds ${ec2}:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2}:/home/ec2-user"
                         sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ec2-user@44.193.200.99:/home/ec2-user"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@44.193.200.99 ${shellCmd}"
                 }
