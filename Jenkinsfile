@@ -1,8 +1,8 @@
 #!/user/bin/env groovy
 
-@Library('Jenkins-shared-library-nodejs')
+@Library('Jenkins-shared-library-nodejs')_
 
-def gv
+//def gv
 
 pipeline {
     agent any
@@ -10,13 +10,13 @@ pipeline {
         nodejs 'nodeJS-byme'
     }
     stages { 
-        stage('init') {
-            steps {
-                script{
-                    gv = load "script.groovy"
-                }
-            }
-        }
+        //stage('init') {
+            //steps {
+                //script{
+                    //gv = load "script.groovy"
+                //}
+            //}
+        //}
         stage('increment app version') {
             steps {
                 script{
