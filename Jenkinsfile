@@ -10,13 +10,6 @@ pipeline {
         nodejs 'nodeJS-byme'
     }
     stages { 
-        //stage('init') {
-            //steps {
-                //script{
-                    //gv = load "script.groovy"
-                //}
-            //}
-        //}
         stage('increment app version') {
             steps {
                 script{
@@ -49,7 +42,6 @@ pipeline {
             steps {
                 script{
                     echo 'Hello, deploying application....'
-
                     def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
                     
                     //def dockerCmd = 'docker run -p 3050:3000 -d cnwagba/jenkins-repo-dockerhub:1.0.4-2'
@@ -59,7 +51,7 @@ pipeline {
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@44.193.200.99 ${shellCmd}"
                 }
             }
-       }        
+         }        
      }
         stage('commit new version to github') {
             steps {
@@ -67,6 +59,6 @@ pipeline {
                   CommitToGit()
               }
            } 
-       }
-   }
+        }
+    }
  }
