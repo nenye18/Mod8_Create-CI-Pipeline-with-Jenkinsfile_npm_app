@@ -31,13 +31,6 @@ pipeline {
                 }        
             }
         }
-        stage('commit new version to github') {
-            steps {
-              script{
-                  CommitToGit()
-              }
-           } 
-       }
        stage('deploy to AWS EC2') {
             steps {
                 script{
