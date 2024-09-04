@@ -2,16 +2,18 @@
 
 #### "Build Automation with Jenkins"
 
-##### Test
-The project uses jest library for tests. (see "test" script in package.json)
-There is 1 test (server.test.js) in the project that checks whether the main index.html file exists in the project. 
+##### Dynamically Increment Application version in Jenkins Pipeline
 
-To run the nodejs test:
+# Technologies Used:
+Jenkins, Docker, Github, Git, Java, Maven
+# Project Description:
+Configure -----
 
-    npm run test
 
-Make sure to download jest library before running test, otherwise jest command defined in package.json won't be found.
 
-    npm install
 
-In order to see failing test, remove index.html or rename it and run tests.
+
+# Configured Webhook to trigger CI pipeline automatically on every change
+Install Github plugin in Jenkins
+Configure Github access token and connection to Jenkins in Github project setting
+Configure Jenkins to trigger CI pipeline, whenever a change is pushed to Github
